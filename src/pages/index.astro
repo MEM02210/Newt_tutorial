@@ -1,11 +1,33 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
+import { newtClient } from '../lib/newt';
+import type { Article } from '../lib/newt';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const { items: articles } = await newtClient.getContents<Article>({
+	appUid: 'blog',
+	modelUid: 'article',
+	query: {
+		select: ['title', 'slug', 'body'],
+	},
+}).catch((error) => {
+	console.error(error);
+	return { items: [] };
+});
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Newt・Astroブログ" description="NewtとAstroを利用したブログです">
+	<main>
+		<h1>tesut</h1>
+		<ul>
+			{
+				articles.map((article) => {
+					return (
+						<li>
+							<a href={`/articles/${article.slug}`}>{article.title}</a>
+						</li>
+					)
+				})
+			}
+		</ul>
+	</main>
 </Layout>
