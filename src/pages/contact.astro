@@ -1,0 +1,106 @@
+---
+import Layout from "../layouts/Layout.astro"
+---
+
+<Layout
+  title="Newt・Astroフォーム"
+  description="NewtとAstroを利用した問い合わせフォームです"
+>
+  <main class="Main">
+    <div class="Contact">
+      <h1 class="Contact_Title">Contact us</h1>
+      <form action={`https://${import.meta.env.NEWT_SPACE_UID}.form.newt.so/v1/${import.meta.env.NEWT_FORM_UID}`} method="post" class="Contact_Form">
+        <label for="name" class="Contact_Label">
+          Name
+          <input id="name" name="name" class="Contact_InputText" required />
+        </label>
+        <label for="email" class="Contact_Label">
+          Email
+          <input id="email" name="email" type="email" class="Contact_InputText" required />
+        </label>
+        <label for="message" class="Contact_Label">
+          Message
+          <textarea id="message" name="message" class="Contact_Textarea" required ></textarea>
+        </label>
+        <button type="submit" class="Contact_Button">Submit</button>
+      </form>
+    </div>
+  </main>
+</Layout>
+
+<style>
+.Contact {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px 36px;
+}
+.Contact_Title {
+  font-size: 3.2rem;
+  margin: 0 0 4px 0;
+  padding: 0;
+  text-align: center;
+  line-height: 1.5;
+}
+.Contact_Text {
+  font-size: 1.6rem;
+  line-height: 1.5;
+  margin: 0 0 48px 0;
+  padding: 0;
+  color: #666;
+  text-align: center;
+}
+.Contact_Label {
+  display: block;
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin: 0 0 8px 0;
+}
+.Contact_InputText {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1.6rem;
+  margin: 0 0 24px 0;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Segoe UI Emoji', 'Helvetica Neue', Arial,
+    'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+}
+.Contact_InputText:hover {
+  border: 1px solid #aaa;
+}
+.Contact_Textarea {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 1.6rem;
+  margin: 0 0 24px 0;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Segoe UI Emoji', 'Helvetica Neue', Arial,
+    'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  resize: vertical;
+}
+.Contact_Textarea:hover {
+  border: 1px solid #aaa;
+}
+.Contact_Button {
+  font-size: 1.4rem;
+  margin: 0 auto;
+  display: block;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: none;
+  font-weight: bold;
+  background: #333;
+  color: #fff;
+  transition: background 0.2s;
+  font-family: 'Segoe UI Emoji', 'Helvetica Neue', Arial,
+    'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  cursor: pointer;
+}
+.Contact_Button:hover {
+  background: #000;
+</style>
